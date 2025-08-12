@@ -1,0 +1,124 @@
+{{- if .IsTranslated -}}
+<div class="language-switcher ltr:ml-4 rtl:mr-4">
+  <div class="language-dropdown">
+    <button class="language-btn" aria-label="Language">
+      {{- .Language.LanguageName -}}
+    </button>
+    <div class="language-menu">
+      {{- range .Translations -}}
+      <a href="{{- .Permalink -}}" class="language-option">
+        {{- .Language.LanguageName -}}
+      </a>
+      {{- end -}}
+      <a href="{{- .Permalink -}}" class="language-option current">
+        {{- .Language.LanguageName -}}
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+.language-switcher {
+  position: relative;
+  display: inline-block;
+}
+
+.language-dropdown {
+  position: relative;
+}
+
+.language-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.language-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dark .language-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.language-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: var(--bg);
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s;
+  z-index: 1000;
+  min-width: 100px;
+}
+
+.dark .language-menu {
+  border-color: #374151;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.language-dropdown:hover .language-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.language-option {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: inherit;
+  font-size: 14px;
+  transition: background 0.2s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.language-option:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.language-option.current {
+  background: rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+}
+
+.dark .language-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dark .language-option.current {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* 移动端优化 */
+@media (max-width: 1024px) {
+  .language-switcher {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .language-menu {
+    right: auto;
+    left: 0;
+    min-width: 120px;
+  }
+}
+</style>
+{{- end -}} 
